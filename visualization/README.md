@@ -24,7 +24,7 @@ sns.distplot(train['card1'], bins=10,kde=False)
 sns.distplot(train['card1'], bins=10)  
 ```
 
-![image](https://user-images.githubusercontent.com/53253817/75953963-e4645300-5ef5-11ea-9b14-de4074c0bbf8.png)
+![image](https://user-images.githubusercontent.com/53253817/75963844-91949680-5f09-11ea-85ed-7e1c68300040.png)
 
 ## 参考文献  
 https://teratail.com/questions/240222  
