@@ -1,3 +1,22 @@
+# 数値変数とカテゴリ変数を分ける  
+- trainデータを上から200データくらいとってきてcsv出力をして眺める  
+- 数値カラムとカテゴリカラムに分けて
+
+```python  
+# csv出力
+train[0:200].to_csv('check.csv')
+```
+
+```python  
+# 数値カラムに対してまとめて処理
+for i in ['card1', 'card2', 'card3', 'card5']:
+    print(train[i].value_counts(dropna=False, normalize=True))
+  
+# カテゴリカラムに対してまとめて処理
+
+
+```
+
 # distplot(ヒストグラム)  
 - ヒストグラムを描写するモジュール  
 - データの分布を確認したいときに使う  
@@ -39,6 +58,7 @@ https://teratail.com/questions/240222
 - カテゴリが多くて見にくい場合は、引数をxからyに変更すると見やすくなる  
 - データが数値の場合軸がおかしくなる？？(example1)  
 - value_countsを使ったほうがいいかもしれない(example2)  
+- カテゴリ数が多すぎる場合はvalue_countsで(example4)  
 
 ```python  
 sns.countplot(x=列名, data=データフレーム)
@@ -65,7 +85,7 @@ NaN    0.887689233582822
 Name: id_03, dtype: float64
 ```
 
-## example2  
+## example3  
 ```python  
 train['ProductCD'].value_counts(dropna=False, normalize=True).head()
 sns.countplot(y='ProductCD', data=train)
@@ -81,3 +101,51 @@ Name: ProductCD, dtype: float64
 ```
 
 ![image](https://user-images.githubusercontent.com/53253817/75964530-b50c1100-5f0a-11ea-85bf-3aa0f7eb39cd.png)
+
+## example4  
+```python  
+# 上位20個の度数を表示
+train['id_30'].value_counts(dropna=False, normalize=True)[:20]
+```
+
+```
+NaN                 0.868654
+Windows 10          0.035823
+Windows 7           0.022200
+iOS 11.2.1          0.006303
+iOS 11.1.2          0.006264
+Android 7.0         0.004862
+Mac OS X 10_12_6    0.004333
+Mac OS X 10_11_6    0.003976
+iOS 11.3.0          0.003414
+Windows 8.1         0.003241
+Mac OS X 10_10_5    0.002796
+iOS 11.2.6          0.002789
+iOS 10.3.3          0.002638
+Mac OS X 10_13_2    0.002406
+Mac OS X 10_13_1    0.002051
+iOS 11.2.5          0.002032
+Linux               0.001924
+Android             0.001827
+iOS 11.2.2          0.001527
+Mac OS X 10_13_3    0.001456
+Name: id_30, dtype: float64
+```
+
+## example4  
+- hueでpandasのgroupby的な感じで処理できる  
+
+```python  
+sns.countplot(x='card4', data=train, hue='isFraud')
+```
+
+![image](https://user-images.githubusercontent.com/53253817/75983263-88b4bc80-5f2b-11ea-978c-87508a5ef6f2.png)
+
+# わかったこと  
+- 上から200個くらいデータをとってきてcsv出力してデータの全体を見るようにしてlabelencodingするべきものとかを区別する  
+- 上から200個くらいデータをとってきてcsv出力して数値変数とカテゴリ変数に分ける  
+- カテゴリ変数が多過ぎたら、度数が少ないものを包括して'other'という特徴量データにまとめる（今回は0.1％以下のモノ）  
+
+
+# 参考にする文献  
+https://qiita.com/4m1t0/items/76b0033edb545a78cef5
