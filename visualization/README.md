@@ -10,14 +10,14 @@
 sns.distplot(train['card1'], kde=False)  
 ```
 
-![image](https://user-images.githubusercontent.com/53253817/75953912-c3036700-5ef5-11ea-951b-0724accf28f2.png)
+![image](https://user-images.githubusercontent.com/53253817/75964017-d3254180-5f09-11ea-80c0-112ba110e06b.png)
 
 ## example2  
 ```python  
 sns.distplot(train['card1'], bins=10,kde=False)  
 ```
 
-![image](https://user-images.githubusercontent.com/53253817/75953814-8899ca00-5ef5-11ea-812e-812ba2aa2645.png)
+![image](https://user-images.githubusercontent.com/53253817/75963947-b983fa00-5f09-11ea-904a-4b7b3d9aa424.png)
 
 ## example3  
 ```python  
