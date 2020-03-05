@@ -47,7 +47,7 @@ sns.countplot(x=列名, data=データフレーム)
 sns.countplot(x='id_03', data=train)
 ```
 
-![image](https://user-images.githubusercontent.com/53253817/75954567-5ab58500-5ef7-11ea-8507-8f9e31448f4d.png)
+![image](https://user-images.githubusercontent.com/53253817/75963659-35ca0d80-5f09-11ea-9732-78a35bc382b9.png)
 
 ## example2  
 ```python  
