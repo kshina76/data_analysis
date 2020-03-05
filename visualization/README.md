@@ -34,9 +34,11 @@ https://teratail.com/questions/240222
 - カテゴリ変数に対して行う可視化  
 - x軸がカテゴリ、y軸が度数  
 - カテゴリ変数のカウントを行って描写する  
+- NaNは無視して描画されるので、NaNも表示したかったらほかの値で置き換える  
+- value_countsをしてからNaNの有無を確認した後にcountplotを行うかを決めればいいと思う  
 - カテゴリが多くて見にくい場合は、引数をxからyに変更すると見やすくなる  
-- データが数値の場合軸がおかしくなる？？  
-- value_countsを使ったほうがいいかもしれない   
+- データが数値の場合軸がおかしくなる？？(example1)  
+- value_countsを使ったほうがいいかもしれない(example2)  
 
 ```python  
 sns.countplot(x=列名, data=データフレーム)
@@ -63,3 +65,19 @@ NaN    0.887689233582822
 Name: id_03, dtype: float64
 ```
 
+## example2  
+```python  
+train['ProductCD'].value_counts(dropna=False, normalize=True).head()
+sns.countplot(y='ProductCD', data=train)
+```
+
+```
+W    0.744522
+C    0.116028
+R    0.063838
+H    0.055922
+S    0.019690
+Name: ProductCD, dtype: float64
+```
+
+![image](https://user-images.githubusercontent.com/53253817/75964530-b50c1100-5f0a-11ea-85bf-3aa0f7eb39cd.png)
